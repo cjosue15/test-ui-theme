@@ -1,0 +1,27 @@
+<ng-container *ngIf="item.route; else buttonRoute">
+  <a [routerLink]="item.route">
+    <ng-container [ngTemplateOutlet]="innerItem"></ng-container>
+  </a>
+</ng-container>
+<ng-template #buttonRoute>
+  <button>
+    <ng-container [ngTemplateOutlet]="innerItem"></ng-container>
+  </button>
+</ng-template>
+
+<ng-template #innerItem>
+  <i-feather [name]="item.iconName || 'circle'"></i-feather>
+  <span>{{ item.title }}</span>
+</ng-template>
+
+<ul *ngIf="item?.children && item.children?.length" [class.show]="expanded">
+  <li
+    sidebar-item
+    routerLinkActive="navigation__link-active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    *ngFor="let subItem of item.children"
+    [item]="subItem"
+  >
+    <a [routerLink]="subItem.route" class="d-none"></a>
+  </li>
+</ul>

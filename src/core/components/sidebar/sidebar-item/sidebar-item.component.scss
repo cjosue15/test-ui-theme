@@ -1,0 +1,99 @@
+:host {
+  position: relative;
+
+  &.has__children {
+    &::after {
+      content: "";
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236e6b7b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-right'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 1.1rem;
+      height: 1.1rem;
+      width: 1.1rem;
+      display: inline-block;
+      position: absolute;
+      right: 20px;
+      top: 14px;
+      transform: rotate(0deg);
+      transition: all 0.2s ease-out;
+    }
+
+    ul > li {
+      button,
+      a {
+        padding: 10px 20px;
+      }
+
+      i-feather {
+        width: 11px;
+        height: 11px;
+      }
+    }
+  }
+
+  &.navigation__link {
+    a,
+    button {
+      line-height: 1.45;
+      color: #d0d2d6;
+      margin: 0 15px;
+      padding: 10px 15px;
+      display: flex;
+      cursor: pointer;
+      text-align: left;
+
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      i-feather {
+        width: 20px;
+        height: 20px;
+        margin-right: 1.1rem;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      font-size: inherit;
+      font-family: inherit;
+      background-color: transparent;
+      width: calc(100% - 30px);
+      border: none;
+    }
+
+    ul {
+      display: none;
+
+      &.show {
+        display: block;
+      }
+    }
+
+    & > ul li:first-of-type {
+      margin-top: 10px;
+    }
+
+    &-active {
+      a,
+      button {
+        background: linear-gradient(118deg, #7367f0, rgba(115, 103, 240, 0.7));
+        box-shadow: 0 0 10px 1px rgb(115 103 240 / 70%);
+        border-radius: 4px;
+      }
+    }
+
+    &-expanded > {
+      a,
+      button {
+        background: #0c102a;
+        border-radius: 6px;
+      }
+    }
+  }
+}
