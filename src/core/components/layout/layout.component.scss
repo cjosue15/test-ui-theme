@@ -1,0 +1,12 @@
+#layout {
+  display: flex;
+  background-color: #161d31;
+  height: 100vh;
+  overflow: hidden;
+
+  #content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow: auto;
+  }
+}
