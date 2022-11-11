@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: #d0d2d6;
+  // color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
