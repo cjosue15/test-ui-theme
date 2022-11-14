@@ -1,15 +1,102 @@
+:host {
+  position: fixed;
+  z-index: 5;
+
+  &.mobile {
+    opacity: 0;
+    transform: translateZ(0);
+    transition: width 0.25s, opacity 0.25s, transform 0.25s;
+    width: 260px;
+    left: -260px;
+
+    &-open {
+      opacity: 1;
+      transform: translate3d(260px, 0, 0);
+      transition: width 0.25s, opacity 0.25s, transform 0.25s;
+    }
+  }
+}
+
 .sidebar {
   width: 260px;
   max-width: 260px;
   background-color: #283046;
   min-height: 100vh;
+  transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background 0s;
 
-  &__logo {
+  $sidebar: &;
+
+  &__header {
+    display: flex;
     height: 60px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     padding: 10px 30px;
+  }
+
+  &__collapsed {
+    width: 80px;
+
+    $collapsed: &;
+
+    &-expanded {
+      width: 260px;
+    }
+
+    &:not(#{$collapsed}-expanded) {
+      #{$sidebar}__logo {
+        h2 {
+          display: none;
+        }
+      }
+
+      ::ng-deep {
+        .navigation {
+          &__link {
+            &-title {
+              display: none;
+            }
+
+            &-expanded {
+              button,
+              a {
+                width: auto !important;
+                i-feather {
+                  margin-right: 0 !important;
+                }
+              }
+            }
+
+            &.has__children {
+              &::after {
+                display: none;
+              }
+
+              ul.show {
+                display: none;
+              }
+            }
+          }
+
+          &__section {
+            span {
+              display: none;
+            }
+
+            i-feather {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__logo {
+    display: flex;
+    gap: 10px;
 
     picture {
       display: inline-block;
@@ -30,9 +117,23 @@
     }
   }
 
-  .navigation {
+  &__close {
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+
+      i-feather {
+        width: 18px;
+        height: 18px;
+        color: #7367f0;
+      }
+    }
+  }
+
+  ng-scrollbar {
     font-size: 1.1rem;
-    max-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
     overflow: auto;
   }
 }

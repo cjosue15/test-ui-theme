@@ -1,27 +1,42 @@
-<div class="sidebar">
-  <div class="sidebar__logo">
-    <picture>
-      <img src="assets/images/logo.svg" alt="Logo" />
-    </picture>
-    <h2>Vuexy</h2>
+<div
+  class="sidebar"
+  #sidebar
+  [class.sidebar__collapsed]="!isMobile && isCollapsed"
+  [class.sidebar__collapsed-expanded]="isExpandedOnHover"
+  (mouseenter)="openExpandedSidebar()"
+  (mouseleave)="closeExpandedSidebar()"
+>
+  <div class="sidebar__header">
+    <div class="sidebar__logo">
+      <picture>
+        <img src="assets/images/logo.svg" alt="Logo" />
+      </picture>
+      <h2>Vuexy</h2>
+    </div>
+    <div class="sidebar__close" *ngIf="isMobile">
+      <button (click)="closeSidebar()">
+        <i-feather name="x"></i-feather>
+      </button>
+    </div>
   </div>
-  <ul class="navigation">
-    <ng-container *ngFor="let section of menu">
-      <li
-        sidebar-section
-        *ngIf="section.sectionName"
-        [sectionName]="section.sectionName"
-      ></li>
-      <li
-        sidebar-item
-        routerLinkActive="navigation__link-active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        *ngFor="let item of section.sectionItems; let i = index"
-        (onSelectedItem)="itemSelected(i)"
-        [item]="item"
-      >
-        <a [routerLink]="item.route" class="d-none"></a>
-      </li>
-    </ng-container>
-  </ul>
+  <ng-scrollbar>
+    <ul class="navigation">
+      <ng-container *ngFor="let section of menu">
+        <li
+          sidebar-section
+          *ngIf="section.sectionName"
+          [sectionName]="section.sectionName"
+        ></li>
+        <li
+          sidebar-item
+          routerLinkActive="navigation__link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          *ngFor="let item of section.sectionItems; let i = index"
+          [item]="item"
+        >
+          <a [routerLink]="item.route"></a>
+        </li>
+      </ng-container>
+    </ul>
+  </ng-scrollbar>
 </div>

@@ -1,11 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
   SidebarItemComponent,
   SidebarSectionComponent,
 } from '@core/components/sidebar';
+import { IconsCoreModule } from '@core/icons';
 import { INavSection } from '@core/models';
+import { SidebarService } from '@core/services/sidebar';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,41 +25,109 @@ import { INavSection } from '@core/models';
   imports: [
     CommonModule,
     RouterModule,
+    NgScrollbarModule,
     SidebarItemComponent,
     SidebarSectionComponent,
+    IconsCoreModule,
   ],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
+  host: {
+    '[class.mobile]': 'isMobile',
+    '[class.mobile-open]': 'sidebarOpenInMobile',
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent implements OnInit {
-  menu: INavSection[];
+  @Input() isCollapsed: boolean;
+
+  @Input() isMobile: boolean;
 
   @ViewChildren(SidebarItemComponent)
   sidebarItems!: QueryList<SidebarItemComponent>;
 
-  constructor() {
+  @ViewChild('sidebar') sidebarRef!: ElementRef<HTMLDivElement>;
+
+  menu: INavSection[];
+
+  isExpandedOnHover: boolean;
+
+  sidebarOpenInMobile: boolean;
+
+  constructor(private _sidebarService: SidebarService) {
+    this.isCollapsed = true;
+    this.isExpandedOnHover = false;
+    this.isMobile = false;
+    this.sidebarOpenInMobile = false;
     this.menu = [
       {
         sectionItems: [
           {
-            title: 'Dashboards',
+            title: 'Dashboard 1',
+            iconName: 'home',
+            children: [
+              {
+                title: 'eCommerce',
+                iconName: 'circle',
+                children: [
+                  {
+                    title: 'Test',
+                    iconName: 'test',
+                    route: '/dashboard/test',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            title: 'Dashboard 2',
             iconName: 'home',
             children: [
               {
                 title: 'Analytics',
-                iconName: 'sub page  1',
-                children: [
-                  {
-                    title: 'test',
-                    iconName: 'circle',
-                    route: '/',
-                  },
-                ],
+                iconName: 'circle',
+                route: '/dashboard/analytics',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        sectionName: 'Menus',
+        sectionItems: [
+          {
+            title: 'Menu Levels',
+            iconName: 'menu',
+            children: [
+              {
+                title: 'Second Level',
+
+                iconName: 'circle',
+                route: '#',
               },
               {
-                title: 'eCommerce',
-                iconName: 'sub page 2',
-                route: '/dashboard/ecommerce',
+                title: 'Second Level',
+                iconName: 'circle',
+                children: [
+                  {
+                    title: 'Third Level',
+                    route: '#',
+                  },
+                  {
+                    title: 'Third Level',
+                    route: '#',
+                    children: [
+                      {
+                        title: 'Third Level',
+                        route: '#',
+                      },
+                      {
+                        title: 'Third Level',
+                        route: '#',
+                      },
+                    ],
+                  },
+                ],
               },
             ],
           },
@@ -225,14 +305,25 @@ export class SidebarComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._sidebarService.sidebarIsOpenInMobile$.subscribe(
+      (isOpen) => (this.sidebarOpenInMobile = isOpen)
+    );
+  }
 
-  itemSelected(index: number): void {
-    console.log(index);
-    this.sidebarItems.toArray().forEach((sidebarItem) => {
-      if (sidebarItem.expanded) {
-        sidebarItem.expanded = false;
-      }
-    });
+  closeSidebar(): void {
+    this._sidebarService.sidebarIsOpenInMobile = false;
+  }
+
+  openExpandedSidebar(): void {
+    if (this.isCollapsed && !this.isMobile) {
+      this.isExpandedOnHover = true;
+    }
+  }
+
+  closeExpandedSidebar(): void {
+    if (this.isCollapsed && !this.isMobile) {
+      this.isExpandedOnHover = false;
+    }
   }
 }
