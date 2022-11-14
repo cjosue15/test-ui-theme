@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   Input,
+  OnChanges,
   OnInit,
   QueryList,
   ViewChild,
@@ -34,11 +35,11 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
   styleUrls: ['./sidebar.component.scss'],
   host: {
     '[class.mobile]': 'isMobile',
-    '[class.mobile-open]': 'sidebarOpenInMobile',
+    '[class.mobile-open]': 'isMobile && sidebarOpenInMobile',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnChanges {
   @Input() isCollapsed: boolean;
 
   @Input() isMobile: boolean;
@@ -309,6 +310,12 @@ export class SidebarComponent implements OnInit {
     this._sidebarService.sidebarIsOpenInMobile$.subscribe(
       (isOpen) => (this.sidebarOpenInMobile = isOpen)
     );
+  }
+
+  ngOnChanges(): void {
+    if (!this.isMobile) {
+      this.sidebarOpenInMobile = false;
+    }
   }
 
   closeSidebar(): void {
