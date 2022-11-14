@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@angular-devkit/build-angular': ^14.2.7
   '@angular/animations': ^14.2.0
+  '@angular/cdk': ^14.2.7
   '@angular/cli': ~14.2.7
   '@angular/common': ^14.2.0
   '@angular/compiler': ^14.2.0
@@ -13,6 +14,7 @@ specifiers:
   '@angular/platform-browser-dynamic': ^14.2.0
   '@angular/router': ^14.2.0
   '@types/jasmine': ~4.0.0
+  '@types/node': ^18.11.9
   angular-feather: ^6.5.0
   jasmine-core: ~4.3.0
   karma: ~6.4.0
@@ -20,6 +22,7 @@ specifiers:
   karma-coverage: ~2.2.0
   karma-jasmine: ~5.1.0
   karma-jasmine-html-reporter: ~2.0.0
+  ngx-scrollbar: ^10.0.1
   rxjs: ~7.5.0
   tslib: ^2.3.0
   typescript: ~4.7.2
@@ -27,6 +30,7 @@ specifiers:
 
 dependencies:
   '@angular/animations': 14.2.9_@angular+core@14.2.9
+  '@angular/cdk': 14.2.7_qjl2ys43llfr5ryvde32rurtni
   '@angular/common': 14.2.9_7m4pc4sup4phcyoce7cdzdyotq
   '@angular/compiler': 14.2.9_@angular+core@14.2.9
   '@angular/core': 14.2.9_rxjs@7.5.7+zone.js@0.11.8
@@ -35,6 +39,7 @@ dependencies:
   '@angular/platform-browser-dynamic': 14.2.9_sa5qsytebt3lzloeb2hiyqjqom
   '@angular/router': 14.2.9_vk63podrph7tnrzcj3wcs4qwfm
   angular-feather: 6.5.0_@angular+core@14.2.9
+  ngx-scrollbar: 10.0.1_z5xqtevvqa7n6vvgcbqubralpa
   rxjs: 7.5.7
   tslib: 2.4.1
   zone.js: 0.11.8
@@ -44,6 +49,7 @@ devDependencies:
   '@angular/cli': 14.2.8
   '@angular/compiler-cli': 14.2.9_gu5mucdgdlzjgeshbto2fruphu
   '@types/jasmine': 4.0.3
+  '@types/node': 18.11.9
   jasmine-core: 4.3.0
   karma: 6.4.1
   karma-chrome-launcher: 3.1.1
@@ -237,6 +243,21 @@ packages:
     dependencies:
       '@angular/core': 14.2.9_rxjs@7.5.7+zone.js@0.11.8
       tslib: 2.4.1
+    dev: false
+
+  /@angular/cdk/14.2.7_qjl2ys43llfr5ryvde32rurtni:
+    resolution: {integrity: sha512-/tEsYaUbDSnfEmKVvAMramIptmhI67O+9STjOV0i+74XR2NospeK0fkbywIANu1n3w6AHGMotvRWJrjmbCElFg==}
+    peerDependencies:
+      '@angular/common': ^14.0.0 || ^15.0.0
+      '@angular/core': ^14.0.0 || ^15.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/common': 14.2.9_7m4pc4sup4phcyoce7cdzdyotq
+      '@angular/core': 14.2.9_rxjs@7.5.7+zone.js@0.11.8
+      rxjs: 7.5.7
+      tslib: 2.4.1
+    optionalDependencies:
+      parse5: 5.1.1
     dev: false
 
   /@angular/cli/14.2.8:
@@ -2501,6 +2522,10 @@ packages:
   /batch/0.6.1:
     resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
     dev: true
+
+  /bezier-easing/2.1.0:
+    resolution: {integrity: sha512-gbIqZ/eslnUFC1tjEvtz0sgx+xTK20wDnYMIA27VA04R7w6xxXQPZDbibjA9DTWZRA2CXtwHykkVzlCaAJAZig==}
+    dev: false
 
   /big.js/5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
@@ -4899,6 +4924,22 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
+  /ngx-scrollbar/10.0.1_z5xqtevvqa7n6vvgcbqubralpa:
+    resolution: {integrity: sha512-lrjc0mo8myZLxuqod8tcdbNK4HGKs8Sl3Jh7sD7eHoFsqPEBA9T+qvgVU+p81OEIPYDjmJvjR7ItTGmCpEl7hA==}
+    peerDependencies:
+      '@angular/cdk': '>=14.1.0'
+      '@angular/common': '>=14.1.0'
+      '@angular/core': '>=14.1.0'
+      rxjs: '>=6.0.0'
+    dependencies:
+      '@angular/cdk': 14.2.7_qjl2ys43llfr5ryvde32rurtni
+      '@angular/common': 14.2.9_7m4pc4sup4phcyoce7cdzdyotq
+      '@angular/core': 14.2.9_rxjs@7.5.7+zone.js@0.11.8
+      bezier-easing: 2.1.0
+      rxjs: 7.5.7
+      tslib: 2.4.1
+    dev: false
+
   /nice-napi/1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}
     os: ['!win32']
@@ -5261,6 +5302,12 @@ packages:
     dependencies:
       parse5: 6.0.1
     dev: true
+
+  /parse5/5.1.1:
+    resolution: {integrity: sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==}
+    requiresBuild: true
+    dev: false
+    optional: true
 
   /parse5/6.0.1:
     resolution: {integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==}
