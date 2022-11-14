@@ -1,0 +1,16 @@
+@use "./themes/dark/dark-theme.scss" as dark;
+@import "./theme-bootstrap.scss";
+
+@mixin dark-theme($theme) {
+  body.dark {
+    @include theme-init($theme);
+  }
+}
+
+@mixin ligth-theme($theme) {
+  body {
+    @include theme-init($theme);
+  }
+}
+
+@include dark-theme(dark.$dark-theme);

@@ -1,0 +1,6 @@
+@import "./all-components";
+
+@mixin theme-init($config) {
+  //all
+  @include all-component-themes($config);
+}

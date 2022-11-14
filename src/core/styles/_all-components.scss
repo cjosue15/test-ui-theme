@@ -1,0 +1,5 @@
+@use "../components/sidebar/sidebar-theme.scss" as sidebar;
+
+@mixin all-component-themes($theme) {
+  @include sidebar.theme($theme);
+}
