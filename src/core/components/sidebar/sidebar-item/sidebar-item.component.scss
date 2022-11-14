@@ -1,37 +1,45 @@
 :host {
   position: relative;
 
-  &.has__children {
-    &::after {
-      content: "";
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236e6b7b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-right'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: 50%;
-      background-size: 1.1rem;
-      height: 1.1rem;
-      width: 1.1rem;
-      display: inline-block;
-      position: absolute;
-      right: 20px;
-      top: 14px;
-      transform: rotate(0deg);
-      transition: all 0.2s ease-out;
-    }
-
-    ul > li {
-      button,
-      a {
-        padding: 10px 20px;
-      }
-
-      i-feather {
-        width: 11px;
-        height: 11px;
-      }
-    }
-  }
-
   &.navigation__link {
+    &.has__children {
+      &::after {
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236e6b7b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-right'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: 50%;
+        background-size: 1.1rem;
+        height: 1.1rem;
+        width: 1.1rem;
+        display: inline-block;
+        position: absolute;
+        right: 20px;
+        top: 14px;
+        transform: rotate(0deg);
+        transition: all 0.2s ease-out;
+      }
+
+      ul > li {
+        button,
+        a {
+          padding: 10px 20px;
+        }
+
+        i-feather {
+          width: 11px;
+          height: 11px;
+        }
+      }
+    }
+
+    &-expanded {
+      &.has__children {
+        &::after {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
     a,
     button {
       line-height: 1.45;
@@ -91,7 +99,7 @@
     &-expanded > {
       a,
       button {
-        background: #0c102a;
+        background: #161d31;
         border-radius: 6px;
       }
     }

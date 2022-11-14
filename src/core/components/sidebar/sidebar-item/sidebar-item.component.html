@@ -10,8 +10,8 @@
 </ng-template>
 
 <ng-template #innerItem>
-  <i-feather [name]="item.iconName || 'circle'"></i-feather>
-  <span>{{ item.title }}</span>
+  <i-feather *ngIf="item.iconName" [name]="item.iconName"></i-feather>
+  <span class="navigation__link-title">{{ item.title }}</span>
 </ng-template>
 
 <ul *ngIf="item?.children && item.children?.length" [class.show]="expanded">
@@ -22,6 +22,6 @@
     *ngFor="let subItem of item.children"
     [item]="subItem"
   >
-    <a [routerLink]="subItem.route" class="d-none"></a>
+    <a [routerLink]="subItem.route"></a>
   </li>
 </ul>
