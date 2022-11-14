@@ -1,9 +1,17 @@
-<div id="layout">
+<div id="layout" *ngIf="config">
   <div>
-    <app-sidebar></app-sidebar>
+    <app-sidebar
+      [isMobile]="isMobile"
+      [isCollapsed]="config.layout.sidebar.collapsed"
+    ></app-sidebar>
   </div>
-  <div id="content">
-    <app-header></app-header>
+  <div
+    id="content"
+    class="content__wrapper"
+    [class.content__wrapper-mobile]="isMobile"
+    [class.content__wrapper-expanded]="!config.layout.sidebar.collapsed"
+  >
+    <app-header [isMobile]="isMobile"></app-header>
     <main>
       <ng-content></ng-content>
       <div>
